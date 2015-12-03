@@ -1,0 +1,4 @@
+routes:
+    /account/signup: Api\ControllerCollection\Account\SignupController
+    /account: Api\ControllerCollection\Account\AccountController
+    /: Api\ControllerCollection\HomeController
