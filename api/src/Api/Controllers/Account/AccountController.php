@@ -25,6 +25,6 @@ class AccountController
    */
     public static function getAccount()
     {
-        return array();
+        // fetch user info by calling common/serviceProviders
     }
 }
