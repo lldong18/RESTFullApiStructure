@@ -1,4 +1,4 @@
-A RETFull Api Sturvture 
+A RETFull Api Structure  for a presentation   - Jason Liu
 ==========
 
 Reads annotations from php files and generates API code.
