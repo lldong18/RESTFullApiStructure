@@ -1,0 +1,61 @@
+{#
+This template renders a switch statement to handle exceptions.
+
+It expects a array variable to be set with the name:
+
+ExceptionsToHandle
+
+The format of the array should be:
+array(
+  'ExceptionName' => array(
+    array(
+      'code' => int,
+      'responseCode' => int|false,
+      'responseMessage' => string|false
+    ),
+    ...
+  ),
+  ...
+);
+
+#}
+{% if ExceptionsToHandle|length > 0 %}
+
+//
+// start: exception-switch.php.twig
+//
+        $exceptionName = get_class($exception);
+        $code = $exception->getCode();
+        $message = $exception->getMessage();
+
+        switch ($exceptionName) {
+{% for exceptionName, exceptionList in ExceptionsToHandle %}
+          case '{{ exceptionName|trim('\\') }}':
+            switch ($code) {
+        {%- set defaultException = false -%}
+        {%- for exceptionData in exceptionList %}
+          {%- if exceptionData.code == '*' %}
+        {%- set defaultException = exceptionData %}
+          {%- else %}
+
+              case {{ exceptionData.code }}:
+                throw new HttpException({{ exceptionData.responseCode|default(500) }}, "{{ exceptionData.responseMessage|default('$message') }}", $exception);
+                break;
+          {%- endif %}
+        {%- endfor %}
+{# need to set defaultException beforehand because this has to go last in the switch statement #}
+          {%- if defaultException %}
+
+              default:
+                throw new HttpException({{ defaultException.responseCode|default(500) }}, "{{ defaultException.responseMessage|default('$message') }}", $exception);
+                break;
+          {%- endif %}
+
+            }
+            break;
+{% endfor %}
+        }
+//
+// end: exception-switch.php.twig
+//
+{% endif %}

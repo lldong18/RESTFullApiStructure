@@ -1,0 +1,21 @@
+configs:
+  - out/build/controllers/routes.yml
+providers:
+  Silex\Provider\UrlGeneratorServiceProvider:
+  Api\SilexProvider\SecurityServiceProvider:
+    security.firewalls:
+      home:
+        pattern: ^/$
+      signup:
+        pattern: ^/signup
+        anonymous: true
+        oauth2: true
+    security.role_hierarchy:
+      ROLE_ADMIN: [ROLE_APP]
+      ROLE_APP: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+    security.access_rules:
+      - ['^/(signup)', [IS_AUTHENTICATED_ANONYMOUSLY]]
+      - ['^.*$', [ROLE_USER]]
+Wsbox.providers:
+  Wsbox\ServiceProvider\AccountServiceProvider:
+  Wsbox\ServiceProvider\RegistrationServiceProvider:

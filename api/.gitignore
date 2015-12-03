@@ -1,0 +1,4 @@
+vendor/*
+out/build/*
+out/public/js/api.json.js
+composer.lock
