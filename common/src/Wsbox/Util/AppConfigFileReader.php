@@ -61,9 +61,7 @@ class AppConfigFileReader
      */
     public function getCacheKey($configFileName)
     {
-        // Using filepath as key has side effect while using FileCache.
-        // It creates lots of unnecessary folders.
-        // So I use filename followed by md5 of the filepath as the key.
+
         return  basename($configFileName) . '-' . md5($configFileName);
     }
 
@@ -77,9 +75,7 @@ class AppConfigFileReader
      */
     public function get($configFileName, $testConfigFileName = null)
     {
-        // Using filepath as key has side effect while using FileCache.
-        // It creates lots of unnecessary folders.
-        // So I use filename followed by md5 of the filepath as the key.
+
         $cacheKey = $this->getCacheKey($configFileName);
         if (false === ($config = $this->cache->fetch($cacheKey))) {
             $config = $this->parse($configFileName, $testConfigFileName);
