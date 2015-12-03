@@ -1,16 +1,16 @@
 A RETFull Api Structure  for a presentation   - Jason Liu
 ==========
 
-Reads annotations from php files and generates API code.
+Reads annotations from the controller `Api/Controllers` php files and generates API code.
 
 Example Project
 ---------------
 
-There is an example project in the example directory.
+There is an example project that not fully debug and test yet, only provide the idea to you.
 
-### Building the example project
+### Building the  project
 
-The example project can be run by issuing the following commands in the root:
+The  project can be run by issuing the following commands in the root:
 
     # install dependencies
     make install
@@ -18,7 +18,7 @@ The example project can be run by issuing the following commands in the root:
     # run the build
     make
 
-### Build contents
+### Build RestFull Api contents automatically by above `make`
 
 A build folder will be created at `out/build` with the following structure:
 
@@ -31,7 +31,7 @@ A build folder will be created at `out/build` with the following structure:
         docs/
             api-json.js
 
-The `docs/api-json.js` file will be copied to the `src/Api/public/js` folder.
+The `docs/api-json.js` file will be copied to the `src/Api/public/js` folder for Docs.
 
 ### Example API Documentation
 
