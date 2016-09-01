@@ -8,7 +8,6 @@
 
 namespace Wsbox\Serviceprovider;
 
-
 class RegistrationServiceProvider implements ServiceProviderInterface
 {
 
